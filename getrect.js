@@ -1,17 +1,23 @@
-/You have to create some rectangles that fall from the top of the screen to 
+//You have to create some rectangles that fall from the top of the screen to 
 //to the bottom
-var rectY = [???];//replace the ??????
+var rectY = [0,0,0,0,0,0,0,0];//replace the ??????
+var h =     [0,0,0,0,0,0,0,0];
 
 function setup() {
   createCanvas(400, 400);
 }
 function draw() {
   background(50);
-  noStroke();
+  colorMode(HSB)
+  strokeWeight(3);
   rectMode(CENTER);
-  fill(255);
+  
   for (var i = 0; i < rectY.length; i++) {
-    rect((i + 1) * 100, rectY[?], 50, 25);//replace the question mark
-    rectY[i] += 1; // Replace this comment with an explanation
+    if (rectY[i] > width) {rectY[i] = 0} 
+    h[i] += 1
+    fill(h[i] * (i + 1),360,360)
+    if (h[i] >= 360 / (i+1)) {h[i] = 0}
+    rect((i+0.2) * 50, rectY[i], 40, 10);//replace the question mark
+    rectY[i] += i+1  //Makes it move
   }
 }
